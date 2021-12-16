@@ -562,7 +562,9 @@ class ComposerStaticInitedd987be03a8fb36b06226a27fc23a85
     );
 
     public static $classMap = array (
+        'App\\Infrastructure\\Controller\\Front\\DefaultController' => __DIR__ . '/../..' . '/src/Infrastructure/Controller/Front/DefaultController.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
+        'App\\Tests\\DefaultControllerTest' => __DIR__ . '/../..' . '/tests/DefaultControllerTest.php',
         'Collator' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Doctrine\\Bundle\\DoctrineBundle\\Attribute\\AsEntityListener' => __DIR__ . '/..' . '/doctrine/doctrine-bundle/Attribute/AsEntityListener.php',

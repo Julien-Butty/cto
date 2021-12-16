@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Infrastructure\\Controller\\Front\\DefaultController' => $baseDir . '/src/Infrastructure/Controller/Front/DefaultController.php',
     'App\\Kernel' => $baseDir . '/src/Kernel.php',
+    'App\\Tests\\DefaultControllerTest' => $baseDir . '/tests/DefaultControllerTest.php',
     'Collator' => $vendorDir . '/symfony/polyfill-intl-icu/Resources/stubs/Collator.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Doctrine\\Bundle\\DoctrineBundle\\Attribute\\AsEntityListener' => $vendorDir . '/doctrine/doctrine-bundle/Attribute/AsEntityListener.php',
