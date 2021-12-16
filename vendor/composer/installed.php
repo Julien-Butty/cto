@@ -172,6 +172,15 @@
             'reference' => '20c39c2de286a9d3262cc8ed282a4ae60e265894',
             'dev_requirement' => false,
         ),
+        'easycorp/easyadmin-bundle' => array(
+            'pretty_version' => 'v4.0.1',
+            'version' => '4.0.1.0',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../easycorp/easyadmin-bundle',
+            'aliases' => array(),
+            'reference' => '2af2a6cefdc840f32d615356ebbd0b2f81e735d9',
+            'dev_requirement' => false,
+        ),
         'egulias/email-validator' => array(
             'pretty_version' => '3.1.2',
             'version' => '3.1.2.0',
@@ -215,7 +224,7 @@
             'install_path' => __DIR__ . '/../nikic/php-parser',
             'aliases' => array(),
             'reference' => '210577fe3cf7badcc5814d99455df46564f3c077',
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'ocramius/package-versions' => array(
             'dev_requirement' => false,
@@ -806,6 +815,15 @@
             'reference' => 'e66119f3de95efc359483f810c4c3e6436279436',
             'dev_requirement' => false,
         ),
+        'symfony/polyfill-uuid' => array(
+            'pretty_version' => 'v1.23.0',
+            'version' => '1.23.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-uuid',
+            'aliases' => array(),
+            'reference' => '9165effa2eb8a31bb3fa608df9d529920d21ddd9',
+            'dev_requirement' => false,
+        ),
         'symfony/process' => array(
             'pretty_version' => 'v6.0.0',
             'version' => '6.0.0.0',
@@ -978,6 +996,15 @@
             'install_path' => __DIR__ . '/../symfony/twig-bundle',
             'aliases' => array(),
             'reference' => '1a31af12592d8b9498830ff0236f7357c41a6030',
+            'dev_requirement' => false,
+        ),
+        'symfony/uid' => array(
+            'pretty_version' => 'v6.0.1',
+            'version' => '6.0.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/uid',
+            'aliases' => array(),
+            'reference' => '6ef7c361b84f8ae666843279d08b2b8ce8006033',
             'dev_requirement' => false,
         ),
         'symfony/validator' => array(
