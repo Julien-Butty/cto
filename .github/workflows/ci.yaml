@@ -48,7 +48,5 @@ jobs:
           npm run dev
       - name: Run functional tests
         run: php vendor/bin/simple-phpunit
-      - name: Run Code Sniffer
-        run: php vendor/bin/phpcs
       - name: Run phpstan
         run: php vendor/bin/phpstan analyze src
