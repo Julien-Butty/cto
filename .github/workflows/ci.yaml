@@ -1,21 +1,54 @@
-name: Static code analysis
-
-on: [pull_request]
-
+name: Tests
+on: [push]
 jobs:
-  static-code-analysis:
-    runs-on: ubuntu-latest
+  functional-tests:
+    name: Functional tests
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest]
+        php-versions: ['8.1']
+        node-version: ['14.7']
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: 'password'
+        ports:
+          - 3306:3306
     steps:
-      - uses: actions/checkout@master
-      - name: PHPStan
-        uses: docker://jakzal/phpqa:php8.0-alpine
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
         with:
-          args: phpstan analyze src/ -l 1
-      - name: PHP-CS-Fixer
-        uses: docker://jakzal/phpqa:php8.0-alpine
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, xml, ctype, iconv, intl
+          coverage: xdebug
+      - name: Setup Node
+        uses: actions/setup-node@v1
         with:
-          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
-      - name: Php unit
-        uses: docker://jakzal/phpqa:php8.0-alpine
+          node-version: ${{ matrix.node-version }}
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache composer dependencies
+        uses: actions/cache@v1
         with:
-          args: php bin/phpunit
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Composer dependencies
+        run: |
+          composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+      - name: Install NPM dependencies
+        run: |
+          npm install
+          npm run dev
+      - name: Run functional tests
+        run: php vendor/bin/simple-phpunit
+      - name: Run Code Sniffer
+        run: php vendor/bin/phpcs
+      - name: Run phpstan
+        run: php vendor/bin/phpstan analyze src
