@@ -1,40 +1,22 @@
-name: Tests
-on: [push]
+name: Static code analysis
+
+on: [pull_request]
+
 jobs:
-  functional-tests:
-    name: Functional tests
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        operating-system: [ubuntu-latest]
-        php-versions: ['8.1']
-        node-version: ['14.7']
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: 'password'
-        ports:
-          - 3306:3306
+  static-code-analysis:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
+      - uses: actions/checkout@master
+      - name: PHPStan
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, xml, ctype, iconv, intl
-          coverage: xdebug
-      - name: Setup Node
-        uses: actions/setup-node@v1
+          args: phpstan analyze src/ -l 1
+      - name: PHP-CS-Fixer
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache composer dependencies
-        uses: actions/cache@v1
+          args: php-cs-fixer --dry-run --allow-risky=yes --no-interaction --ansi fix
+      - name: Php unit
+        uses: docker://jakzal/phpqa:php8.0-alpine
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -52,3 +34,4 @@ jobs:
         run: php vendor/bin/phpcs
       - name: Run phpstan
         run: php vendor/bin/phpstan analyze src
+          args: php bin/phpunit
