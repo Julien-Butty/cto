@@ -46,12 +46,6 @@ jobs:
         run: |
           npm install
           npm run dev
-      - name: Prepare database
-        run: |
-          docker-compose up -d
-          symfony console doctrine:database:create
-          symfony console doctrine:schema:update --force
-          symfony console doctrine:fixtures:load -n
       - name: Run functional tests
         run: php vendor/bin/simple-phpunit
       - name: Run Code Sniffer
