@@ -87,7 +87,6 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'ProxyManager\\' => array($vendorDir . '/friendsofphp/proxy-manager-lts/src/ProxyManager'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
-    'PhpCsFixer\\' => array($vendorDir . '/friendsofphp/php-cs-fixer/src'),
     'PackageVersions\\' => array($vendorDir . '/composer/package-versions-deprecated/src/PackageVersions'),
     'PHPStan\\PhpDocParser\\' => array($vendorDir . '/phpstan/phpdoc-parser/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
@@ -109,9 +108,6 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common'),
     'Doctrine\\Bundle\\MigrationsBundle\\' => array($vendorDir . '/doctrine/doctrine-migrations-bundle'),
     'Doctrine\\Bundle\\DoctrineBundle\\' => array($vendorDir . '/doctrine/doctrine-bundle'),
-    'Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
-    'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
-    'Composer\\Pcre\\' => array($vendorDir . '/composer/pcre/src'),
     'App\\Tests\\' => array($baseDir . '/tests'),
     'App\\' => array($baseDir . '/src'),
 );
