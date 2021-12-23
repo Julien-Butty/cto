@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Doctrine\Entity;
 
+use App\Domain\Common\Entity\User;
 use App\Infrastructure\Doctrine\Repository\DoctrineUserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[Entity(repositoryClass: DoctrineUserRepository::class)]
-class DoctrineUser implements UserInterface, PasswordAuthenticatedUserInterface
+class DoctrineUser implements User, UserInterface, PasswordAuthenticatedUserInterface
 {
     #[Id]
     #[GeneratedValue]
