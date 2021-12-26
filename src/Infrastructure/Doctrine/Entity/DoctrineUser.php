@@ -29,6 +29,15 @@ class DoctrineUser implements User, UserInterface, PasswordAuthenticatedUserInte
     #[Column(type: Types::STRING)]
     private string $password;
 
+    #[Column(type: Types::STRING)]
+    private string $firstName;
+
+    #[Column(type: Types::STRING)]
+    private string $lastName;
+
+    #[Column(type: Types::STRING)]
+    private string $phoneNumber;
+
     public function setId(int $id): void
     {
         $this->id = $id;
@@ -79,5 +88,35 @@ class DoctrineUser implements User, UserInterface, PasswordAuthenticatedUserInte
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
     }
 }
